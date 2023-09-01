@@ -1,7 +1,6 @@
 using FrontToBack_PartialView_LoadMore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllersWithViews();
 var config = builder.Configuration;
 builder.Services.Register(config);
 

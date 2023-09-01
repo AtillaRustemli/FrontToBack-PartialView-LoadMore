@@ -21,6 +21,9 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
             vm.SliderContent=_appDbContext.SliderContent.FirstOrDefault();
             vm.Category=_appDbContext.Category.ToList();
             vm.Product=_appDbContext.Product.Include(pI=>pI.ProductImage).ToList();
+            vm.About = _appDbContext.About.FirstOrDefault();
+            vm.AboutList = _appDbContext.AboutList.ToList();
+            
             return View(vm);
         }
     }

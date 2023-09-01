@@ -13,6 +13,8 @@ namespace FrontToBack_PartialView_LoadMore.DAL
         public DbSet<Categories> Category { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductImage> ProductImage { get; set; }
+        public DbSet<About> About { get; set; }
+        public DbSet<AboutList> AboutList { get; set; }
 
     }
 }
