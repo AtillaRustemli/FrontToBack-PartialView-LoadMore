@@ -9,6 +9,10 @@ namespace FrontToBack_PartialView_LoadMore.DAL
         {
         }
         public DbSet<Slider> Slider { get; set; }
+        public DbSet<SliderContent> SliderContent { get; set; }
+        public DbSet<Categories> Category { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<ProductImage> ProductImage { get; set; }
 
     }
 }

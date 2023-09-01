@@ -1,6 +1,7 @@
 ﻿using FrontToBack_PartialView_LoadMore.DAL;
 using FrontToBack_PartialView_LoadMore.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FrontToBack_PartialView_LoadMore.Controllers
 {
@@ -17,6 +18,9 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
         {
             HomeVM vm = new();
             vm.Slider=_appDbContext.Slider.ToList();
+            vm.SliderContent=_appDbContext.SliderContent.FirstOrDefault();
+            vm.Category=_appDbContext.Category.ToList();
+            vm.Product=_appDbContext.Product.Include(pI=>pI.ProductImage).ToList();
             return View(vm);
         }
     }
