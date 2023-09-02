@@ -29,5 +29,14 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
                 .ToList();
             return PartialView("_loadMore", product);
         }
+        public IActionResult Search(string search) {
+            var product = _appDbContext.Product
+                    .Include(p => p.Category)
+                    .Include(p => p.ProductImage)
+                    .Where(p => p.Name.ToLower().Contains(search.ToLower()))
+                    .ToList();
+
+        return PartialView();
+        }
     }
 }

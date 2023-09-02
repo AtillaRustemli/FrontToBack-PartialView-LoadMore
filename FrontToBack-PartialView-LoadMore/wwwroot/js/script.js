@@ -1,5 +1,25 @@
 $(document).ready(function () {
 
+    (document).on("keyup", "#search-input", function () {
+
+        var search = ("#search-input").val().trim();
+        if (search != null) {
+
+            ("#search-input").ajax(){
+                method: "get",
+                url: "/product/search?search=" + search
+                success: fuction(data){
+                    ("search-list").append(data)
+                }
+            }
+            ("search-list li").slice(1).remove();
+        }
+    })
+
+
+
+
+
     //LoadMore
     let skip = 4;
     (document).on("click", "#loadMoreBtn", function () {

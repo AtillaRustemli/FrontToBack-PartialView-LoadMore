@@ -10,12 +10,12 @@
 
         <!-- SLIDER START -->
 
-        <section id="slider">
+       <section id="slider">
                         
             <div class="owl-carousel slider">
            @foreach(var slider in Model.Slider)
-            {
-            <div > <img src="@slider.ImgUrl" alt=""> </div>
+            {    
+                 <div > <img src="img/@slider.ImgUrl" > </div>
             
             }
             </div>
