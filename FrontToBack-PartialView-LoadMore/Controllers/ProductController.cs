@@ -34,9 +34,11 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
                     .Include(p => p.Category)
                     .Include(p => p.ProductImage)
                     .Where(p => p.Name.ToLower().Contains(search.ToLower()))
+                    .OrderByDescending(p => p.Id)
+                    .Take(10)
                     .ToList();
 
-        return PartialView();
+        return PartialView("_Search",product);
         }
     }
 }

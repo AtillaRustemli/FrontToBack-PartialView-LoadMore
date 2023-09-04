@@ -1,18 +1,21 @@
 $(document).ready(function () {
+    //search
+    $(document).on("keyup", "#input-search", function () {
 
-    (document).on("keyup", "#search-input", function () {
-
-        var search = ("#search-input").val().trim();
+        var search = $("#input-search").val().trim();
         if (search != null) {
 
-            ("#search-input").ajax(){
+            $("#search-list li").slice(1).remove();
+
+            
+
+            $.ajax({
                 method: "get",
-                url: "/product/search?search=" + search
-                success: fuction(data){
-                    ("search-list").append(data)
+                url: "/product/search?search=" + search,
+                success: function(data) {
+                    $("#search-list").append(data);
                 }
-            }
-            ("search-list li").slice(1).remove();
+            })
         }
     })
 
@@ -22,12 +25,12 @@ $(document).ready(function () {
 
     //LoadMore
     let skip = 4;
-    (document).on("click", "#loadMoreBtn", function () {
+    $(document).on("click", "#loadMoreBtn", function () {
         $.ajax({
             method: "get",
             url: "/product/loadmore?skip=" + skip,
             success: function (data) {
-                (".row").append();
+                $(".row").append(data);
             }
         })
 
@@ -35,10 +38,11 @@ $(document).ready(function () {
 
 
 
-
     // HEADER
 
     $(document).on('click', '#search', function () {
+        console.log("slaam")
+
         $(this).next().toggle();
     })
 
