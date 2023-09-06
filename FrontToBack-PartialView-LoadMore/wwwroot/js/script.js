@@ -33,6 +33,8 @@ $(document).ready(function () {
                 $(".row").append(data);
             }
         })
+        skip += skip;
+        console.log("Salam");
 
     })
 
