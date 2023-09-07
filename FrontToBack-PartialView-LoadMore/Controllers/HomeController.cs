@@ -23,6 +23,8 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
             vm.Product=_appDbContext.Product.Include(pI=>pI.ProductImage).ToList();
             vm.About = _appDbContext.About.FirstOrDefault();
             vm.AboutList = _appDbContext.AboutList.ToList();
+
+            var tracker=_appDbContext.ChangeTracker.Entries().ToList();
             
             return View(vm);
         }

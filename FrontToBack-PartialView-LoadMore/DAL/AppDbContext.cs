@@ -16,6 +16,7 @@ namespace FrontToBack_PartialView_LoadMore.DAL
         public DbSet<About> About { get; set; }
         public DbSet<AboutList> AboutList { get; set; }
         public DbSet<Bio> Bios { get; set; }
+        public DbSet<SocialMedia> SocialMedia { get; set; }
 
     }
 }

@@ -13,6 +13,10 @@ namespace FrontToBack_PartialView_LoadMore
             {
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             });
+            services.AddSession(option =>
+            {
+                option.IdleTimeout=TimeSpan.FromMinutes(1);
+            });
         }
     }
 }

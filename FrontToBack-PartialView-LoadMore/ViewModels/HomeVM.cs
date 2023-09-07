@@ -10,5 +10,7 @@ namespace FrontToBack_PartialView_LoadMore.ViewModels
         public List<Categories> Category { get; set; }
         public About About { get; set; }
         public List<AboutList> AboutList { get; set; }
+        public Bio Bio { get; set; }
+        public List<SocialMedia> SocialMedia { get; set; }
     }
 }

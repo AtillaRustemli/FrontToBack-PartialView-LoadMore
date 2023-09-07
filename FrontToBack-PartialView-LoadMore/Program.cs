@@ -8,6 +8,7 @@ builder.Services.Register(config);
 
 var app = builder.Build();
 app.UseStaticFiles();
+app.UseSession();
 
 app.MapControllerRoute(
     "default",
