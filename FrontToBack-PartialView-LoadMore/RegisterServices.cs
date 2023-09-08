@@ -17,6 +17,7 @@ namespace FrontToBack_PartialView_LoadMore
             {
                 option.IdleTimeout=TimeSpan.FromMinutes(1);
             });
+            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
 }

@@ -79,8 +79,10 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
         }
         public IActionResult Add(int?id)
         {
-            BasketVM basketVM = new();
-            basketVM.BasketCount++;
+            string basket = Request.Cookies["basket"];
+            var products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+            products.FirstOrDefault(p=>p.Id == id).BasketCount++;
+          
             return RedirectToAction("showbasket");
         }
 
