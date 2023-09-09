@@ -1,10 +1,10 @@
 using FrontToBack_PartialView_LoadMore;
+using FrontToBack_PartialView_LoadMore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 builder.Services.Register(config);
-
-
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 app.UseStaticFiles();

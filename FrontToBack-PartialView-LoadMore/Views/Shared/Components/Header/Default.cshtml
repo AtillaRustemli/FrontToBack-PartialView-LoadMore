@@ -1,5 +1,9 @@
-﻿@model Bio
-
+﻿@using FrontToBack_PartialView_LoadMore.Services;
+@model Bio
+@inject IBasket basketServise;
+@{
+    int count = basketServise.GetBasketCount();
+}
 
 
 <header>
@@ -142,7 +146,7 @@
                             <li class="nav-item my-auto shop-cart">
                                 <a asp-controller="basket" asp-action="showbasket" ><i class="fas fa-shopping-bag"></i></a>
                                 
-                                <sup class="rounded-circle">@ViewBag.Count</sup>
+                                <sup class="rounded-circle">@count</sup>
                                 <span>CART ($0)</span>
                                 <ul class="list-unstyled py-3">
                                     <li class="">No products in the cart.</li>

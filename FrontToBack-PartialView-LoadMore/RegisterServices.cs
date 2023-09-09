@@ -1,4 +1,5 @@
 ﻿using FrontToBack_PartialView_LoadMore.DAL;
+using FrontToBack_PartialView_LoadMore.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,7 +18,9 @@ namespace FrontToBack_PartialView_LoadMore
             {
                 option.IdleTimeout=TimeSpan.FromMinutes(1);
             });
-            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
+            services.AddTransient<IBasket, BasketService>();
+
         }
     }
 }
