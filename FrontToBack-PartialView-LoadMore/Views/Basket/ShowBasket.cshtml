@@ -4,6 +4,9 @@
 @{
     ViewData["Title"] = "ShowBasket";
 }
+@{
+    double totalPrice = Model.Sum(c => c.Price);
+}
 
 
 <div class="container">
@@ -42,7 +45,7 @@
                 </tbody>
 
             </table>
-            <p asp-controller="basket" asp-action="totalprice" asp-route-id=""></p>
+            <p>totalPrice </p>
             
 
         }
