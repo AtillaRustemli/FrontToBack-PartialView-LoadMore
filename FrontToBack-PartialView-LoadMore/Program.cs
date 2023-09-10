@@ -1,5 +1,6 @@
 using FrontToBack_PartialView_LoadMore;
 using FrontToBack_PartialView_LoadMore.Services;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -15,6 +16,12 @@ app.MapControllerRoute(
     "{controller=home}/{action=index}/{id?}"
 
     );
+app.MapControllerRoute(
+    
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    
+);
 
 //app.MapGet("/", () => "Hello World!");
 
