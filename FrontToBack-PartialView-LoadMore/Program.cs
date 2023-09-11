@@ -10,18 +10,18 @@ builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 app.UseStaticFiles();
 app.UseSession();
+app.MapControllerRoute(
 
+      name: "areas",
+      pattern: "{area:exists}/{controller=dashboard}/{action=Index}/{id?}"
+
+);
 app.MapControllerRoute(
     "default",
     "{controller=home}/{action=index}/{id?}"
 
     );
-app.MapControllerRoute(
-    
-      name: "areas",
-      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-    
-);
+
 
 //app.MapGet("/", () => "Hello World!");
 

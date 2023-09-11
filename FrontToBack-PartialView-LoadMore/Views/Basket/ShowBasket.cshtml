@@ -5,7 +5,7 @@
     ViewData["Title"] = "ShowBasket";
 }
 @{
-    double totalPrice = Model.Sum(c => c.Price);
+    double totalPrice = Model.Sum(c => c.Price*c.BasketCount);
 }
 
 
@@ -36,10 +36,9 @@
                                 <a asp-controller ="basket" asp-action="reduce" asp-route-id="@item.Id">-</a>
                                 @item.BasketCount
                                 <a asp-controller="basket" asp-action="add" asp-route-id="@item.Id" >+</a> </td>
-                <td asp-controller="basket" asp-action="Remove" asp-route-id="@item.Id">x</td>
+                            <td><a asp-controller="basket" asp-action="Remove" asp-route-id="@item.Id">x</a></td>
                             
                 </tr>
-                        <p asp-controller="basket" asp-action="totalprice" asp-route-id="@item.Id">Total Price: </p>
                 }
 
                 </tbody>

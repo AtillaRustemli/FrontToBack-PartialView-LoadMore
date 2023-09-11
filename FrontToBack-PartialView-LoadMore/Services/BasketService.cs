@@ -5,9 +5,9 @@ namespace FrontToBack_PartialView_LoadMore.Services
 {
     public class BasketService : IBasket
     {
-        private HttpContextAccessor _contextAccessor;
+        private IHttpContextAccessor _contextAccessor;
 
-        public BasketService(HttpContextAccessor contextAccessor)
+        public BasketService(IHttpContextAccessor contextAccessor)
         {
             _contextAccessor = contextAccessor;
         }
