@@ -1,0 +1,34 @@
+﻿@model UpdateCategoryVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <form class="forms-sample" method="post">
+            <div class="form-group">
+                <label for="exampleInputUsername1">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Name">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Desc</label>
+                <input asp-for="Desc" class="form-control" placeholder="Desc">
+                <span class="text-danger" asp-validation-for="Desc"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary me-2">Submit</button>
+            <button asp-controller="category" asp-action="index" class="btn btn-light">Go Back</button>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+        </script>
+}
+
+
+
