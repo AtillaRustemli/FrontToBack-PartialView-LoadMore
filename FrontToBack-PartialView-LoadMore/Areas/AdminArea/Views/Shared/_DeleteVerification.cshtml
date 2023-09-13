@@ -1,0 +1,8 @@
+﻿@Model Slider
+<div>
+    <p>Are you sure that you want delete this slide?</p>
+    <a asp-controller="slider" asp-action="delete" asp-route-id="@Model.Id">Yes</a>
+    <a asp-controller="slider" asp-action="index">No</a>
+</div>
+
+

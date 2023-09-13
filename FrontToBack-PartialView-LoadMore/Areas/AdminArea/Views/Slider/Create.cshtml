@@ -1,0 +1,22 @@
+﻿@model CreateSliderVM
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <div class="row">
+        <h3>Create Slide</h3>
+        <form class="forms-sample" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="exampleInputUsername1">Name</label>
+                <input asp-for="Photo" class="form-control" placeholder="Name">
+                <span class="text-danger" asp-validation-for="Photo"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary me-2">Submit</button>
+            <button asp-controller="slider" asp-action="index" class="btn btn-light">Go Back</button>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScript" />
+}
