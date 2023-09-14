@@ -1,0 +1,10 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <div class="row">
+        <img width="150" height="150" src="~/img/@Model.ImgUrl"/>
+        <a asp-controller="slider" asp-action="index" >Go Back</a>
+    </div>
+</div>

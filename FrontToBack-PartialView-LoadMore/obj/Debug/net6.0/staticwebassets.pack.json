@@ -509,8 +509,24 @@
       "PackagePath": "staticwebassets\\css\\style.css.map"
     },
     {
+      "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\023521ef-a549-4677-a6bd-7e36701e5fc4h3-team-img-3.png",
+      "PackagePath": "staticwebassets\\img\\023521ef-a549-4677-a6bd-7e36701e5fc4h3-team-img-3.png"
+    },
+    {
+      "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\2059544a-44a0-4b4b-ae29-9c6b3bb0e8d3h3-team-img-1.png",
+      "PackagePath": "staticwebassets\\img\\2059544a-44a0-4b4b-ae29-9c6b3bb0e8d3h3-team-img-1.png"
+    },
+    {
       "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\7188bb43-1ddc-4df7-808d-c1c93ec59fbcblog-feature-img-3.jpg",
       "PackagePath": "staticwebassets\\img\\7188bb43-1ddc-4df7-808d-c1c93ec59fbcblog-feature-img-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\78a33d77-4d37-4c77-a9f1-83d61fc1b873h3-team-img-2.png",
+      "PackagePath": "staticwebassets\\img\\78a33d77-4d37-4c77-a9f1-83d61fc1b873h3-team-img-2.png"
+    },
+    {
+      "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\a07046bf-c459-4846-8f84-dc7ee7fd782ainstagram2.jpg",
+      "PackagePath": "staticwebassets\\img\\a07046bf-c459-4846-8f84-dc7ee7fd782ainstagram2.jpg"
     },
     {
       "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\blog-feature-img-1.jpg",
@@ -523,6 +539,10 @@
     {
       "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\blog-feature-img-4.jpg",
       "PackagePath": "staticwebassets\\img\\blog-feature-img-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\d3ce80f1-2055-4706-83c2-9d096df85f63favicon.png",
+      "PackagePath": "staticwebassets\\img\\d3ce80f1-2055-4706-83c2-9d096df85f63favicon.png"
     },
     {
       "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\favicon.png",
@@ -543,10 +563,6 @@
     {
       "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\h3-background-img.jpg",
       "PackagePath": "staticwebassets\\img\\h3-background-img.jpg"
-    },
-    {
-      "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\h3-slider-background-2.jpg",
-      "PackagePath": "staticwebassets\\img\\h3-slider-background-2.jpg"
     },
     {
       "Id": "C:\\Users\\MSI\\source\\repos\\FrontToBack-PartialView-LoadMore\\FrontToBack-PartialView-LoadMore\\wwwroot\\img\\h3-slider-background-3.jpg",

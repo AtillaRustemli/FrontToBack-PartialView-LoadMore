@@ -1,0 +1,25 @@
+﻿@model UpdateSliderVM
+@{
+    ViewData["Title"] = "Update";
+}
+<div class="container">
+    <div class="row">
+        <form class="forms-sample" enctype="multipart/form-data" method="post">
+           
+            <div class="form-group">
+                <label for="exampleInputUsername1">Pgoto</label>
+                <input asp-for="Photo" class="form-control" placeholder="Name">
+                <span class="text-danger" asp-validation-for="Photo"></span>
+            </div>
+
+            
+
+            <button type="submit" class="btn btn-primary me-2">Submit</button>
+            <button asp-controller="slider" asp-action="index" class="btn btn-light">Go Back</button>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScript" />
+}
+

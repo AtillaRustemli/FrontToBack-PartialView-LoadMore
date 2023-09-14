@@ -71,14 +71,16 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
         [AutoValidateAntiforgeryToken]
         public IActionResult Update(int?id,UpdateCategoryVM updateCategoryVM)
         {
-            if(!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) { return View(); }
             if(id==null) return NotFound();
             var existCategory = _appDbContext.Category.FirstOrDefault(c=>c.Id==id);
             if (_appDbContext.Category.Any(c => c.Name == updateCategoryVM.Name && c.Id != id)) {
                 ModelState.AddModelError("Name", "Bu adda kateqoriya artiq movcuddur!");
                 return View();
             }
-
+            existCategory.Desc= updateCategoryVM.Desc;
+            existCategory.Name= updateCategoryVM.Name;
+            _appDbContext.SaveChanges();
 
             return View();
         }
@@ -89,7 +91,7 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
         {
             if(id==null) return NotFound();
             var existCategory = _appDbContext.Category.FirstOrDefault(c => c.Id == id);
-            return PartialView("_DeleteMinitab", existCategory);
+            return View("_DeleteMiniTab", existCategory);
         }
         public IActionResult Delete(int?id)
         {

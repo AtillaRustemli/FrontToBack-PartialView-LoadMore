@@ -1,0 +1,9 @@
+﻿@model Categories
+
+ <div>
+     <p>Are you sure to delete this Category?</p>
+     <a asp-controller="category" asp-action="delete" asp-route-id="@Model.Id">Yes</a>
+     <a asp-controller="category" asp-action="Index">No</a> 
+
+</div>
+    
