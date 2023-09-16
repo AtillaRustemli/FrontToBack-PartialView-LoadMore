@@ -1,9 +1,11 @@
 ﻿using FrontToBack_PartialView_LoadMore.Entities;
+using FrontToBack_PartialView_LoadMore.Entities.DemoEntities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FrontToBack_PartialView_LoadMore.DAL
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {
@@ -17,6 +19,11 @@ namespace FrontToBack_PartialView_LoadMore.DAL
         public DbSet<AboutList> AboutList { get; set; }
         public DbSet<Bio> Bios { get; set; }
         public DbSet<SocialMedia> SocialMedia { get; set; }
+        public DbSet<Book> Book { get; set; }
+        public DbSet<Author> Author { get; set; }
+        public DbSet<Genre> Genre { get; set; }
+        public DbSet<BookGenre> BookGenre { get; set; }
+        public DbSet<BookAuthor> BookAuthor { get; set; }
 
     }
 }
