@@ -10,6 +10,7 @@ builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 app.UseStaticFiles();
 app.UseSession();
+app.UseAuthentication();
 app.MapControllerRoute(
 
       name: "areas",

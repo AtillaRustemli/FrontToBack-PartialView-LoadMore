@@ -9,6 +9,7 @@ namespace FrontToBack_PartialView_LoadMore
 {
     public static class RegisterServices
     {
+        
         public static void Register(this IServiceCollection services,IConfiguration config)
         {
             services.AddControllersWithViews();
@@ -37,8 +38,8 @@ namespace FrontToBack_PartialView_LoadMore
                 identityOptions.Lockout.AllowedForNewUsers = true;
             })
                 .AddDefaultTokenProviders()
-                .AddEntityFrameworkStores<AppDbContext>();
-                ;
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddErrorDescriber<CustomIdentityErrorDescriber>();
 
         }
     }

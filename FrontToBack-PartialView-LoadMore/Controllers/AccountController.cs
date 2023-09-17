@@ -6,13 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FrontToBack_PartialView_LoadMore.Controllers
 {
-    public class RegisterController : Controller
+    public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public RegisterController(UserManager<AppUser> userManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Register()
@@ -37,7 +40,18 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
                 }
                 return View(registerVM);
             }
+            await _signInManager.SignInAsync(appUser, isPersistent: false);
             return RedirectToAction("index","Home");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+           await _signInManager.SignOutAsync();
+            return RedirectToAction("index", "home");
+        }
+        public IActionResult Login()
+        {
+            return View();
         }
     }
 }
