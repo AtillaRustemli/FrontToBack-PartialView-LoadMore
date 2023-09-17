@@ -31,25 +31,31 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
             appUser.FullName = registerVM.Fullname;
             appUser.UserName = registerVM.Username;
             appUser.Email = registerVM.Email;
-            IdentityResult result=await _userManager.CreateAsync(appUser, registerVM.Password);
+            IdentityResult result = await _userManager.CreateAsync(appUser, registerVM.Password);
             if (!result.Succeeded)
             {
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError("",error.Description);
+                    ModelState.AddModelError("", error.Description);
                 }
                 return View(registerVM);
             }
             await _signInManager.SignInAsync(appUser, isPersistent: false);
-            return RedirectToAction("index","Home");
+            return RedirectToAction("index", "Home");
         }
 
         public async Task<IActionResult> Logout()
         {
-           await _signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return RedirectToAction("index", "home");
         }
         public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Login(LoginVM loginVM)
         {
             return View();
         }

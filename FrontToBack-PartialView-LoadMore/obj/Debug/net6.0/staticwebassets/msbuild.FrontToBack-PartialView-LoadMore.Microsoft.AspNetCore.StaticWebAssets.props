@@ -2112,6 +2112,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\2059544a-44a0-4b4b-ae29-9c6b3bb0e8d3h3-team-img-1.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\242d41ac-3763-4150-92f7-04fc8d1783cfinstagram6.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>FrontToBack-PartialView-LoadMore</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FrontToBack-PartialView-LoadMore</BasePath>
+      <RelativePath>img/242d41ac-3763-4150-92f7-04fc8d1783cfinstagram6.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\242d41ac-3763-4150-92f7-04fc8d1783cfinstagram6.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\5d2b4581-bf23-43f1-b5af-6ce08e612df8shop-11-img.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>FrontToBack-PartialView-LoadMore</SourceId>

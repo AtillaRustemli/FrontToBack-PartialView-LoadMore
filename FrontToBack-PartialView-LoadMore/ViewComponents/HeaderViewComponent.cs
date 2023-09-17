@@ -22,7 +22,7 @@ namespace FrontToBack_PartialView_LoadMore.ViewComponenta
             if(User.Identity.IsAuthenticated )
             {
                 var user=await _userManager.FindByNameAsync(User.Identity.Name);
-                ViewBag.userFullName=user.FullName
+                ViewBag.userFullName = user.FullName;
             }
           
 

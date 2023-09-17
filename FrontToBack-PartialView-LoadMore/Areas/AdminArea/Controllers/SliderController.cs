@@ -118,9 +118,12 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
         {
             
             if (id == null) return View();
+
             var existSlide=_appDbContext.Slider.FirstOrDefault(s=>s.Id==id);
+
             //updateSliderVM.ImgUrl = existSlide.ImgUrl;
             if (existSlide == null) return NotFound();
+
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("Photo", "Bosh qoymayin!!");
