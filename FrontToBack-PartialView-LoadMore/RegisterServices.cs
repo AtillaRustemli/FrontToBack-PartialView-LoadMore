@@ -23,11 +23,10 @@ namespace FrontToBack_PartialView_LoadMore
             });
             services.AddHttpContextAccessor();
             services.AddTransient<IBasket, BasketService>();
-
             services.AddIdentity<AppUser, IdentityRole>(identityOptions =>
             {
                 identityOptions.Password.RequireNonAlphanumeric = true;
-                identityOptions.Password.RequiredLength = 10;
+                identityOptions.Password.RequiredLength = 8;
                 identityOptions.Password.RequireDigit = true;
                 identityOptions.Password.RequireLowercase = true;
                 identityOptions.Password.RequireUppercase = true;

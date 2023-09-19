@@ -18,12 +18,12 @@ namespace FrontToBack_PartialView_LoadMore.ViewComponenta
         }
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
-            ViewBag.userFullName = null;
-            if(User.Identity.IsAuthenticated )
-            {
-                var user=await _userManager.FindByNameAsync(User.Identity.Name);
-                ViewBag.userFullName = user.FullName;
-            }
+            //ViewBag.userFullName = null;
+            //if(User.Identity.IsAuthenticated )
+            //{
+            //    var user=await _userManager.FindByNameAsync(User.Identity.Name);
+            //    ViewBag.userFullName = user.FullName;
+            //}
           
 
             var bio = _appDbContext.Bios

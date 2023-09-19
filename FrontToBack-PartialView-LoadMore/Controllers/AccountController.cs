@@ -18,13 +18,15 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
             _signInManager = signInManager;
         }
 
-        public IActionResult Register()
+        //Register
+
+        public IActionResult Registers()
         {
             return View();
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Register(RegisterVM registerVM)
+        public async Task<IActionResult> Registers(RegisterVM registerVM)
         {
             if (!ModelState.IsValid) return View();
             AppUser appUser = new();
@@ -36,19 +38,23 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
             {
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError("", error.Description);
+                    ModelState.AddModelError("", error.Description.ToString());
                 }
                 return View(registerVM);
             }
-            await _signInManager.SignInAsync(appUser, isPersistent: false);
+            await _signInManager.SignInAsync(appUser, isPersistent: true);
             return RedirectToAction("index", "Home");
         }
 
+        //Logout
+           
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("index", "home");
         }
+
+        //Login
         public IActionResult Login()
         {
             return View();
