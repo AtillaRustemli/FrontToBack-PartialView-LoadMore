@@ -42,8 +42,8 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
                 }
                 return View(registerVM);
             }
-            await _signInManager.SignInAsync(appUser, isPersistent: true);
-            return RedirectToAction("index", "Home");
+            
+            return RedirectToAction("Index", "Home");
         }
 
         //Logout
@@ -51,7 +51,7 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("index", "home");
+            return RedirectToAction("Index", "Home");
         }
 
         //Login
@@ -61,9 +61,35 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult Login(LoginVM loginVM)
+        public async Task<IActionResult> Login(LoginVM loginVM)
         {
-            return View();
+            if(!ModelState.IsValid) return View();
+
+            AppUser userEnter =await _userManager.FindByEmailAsync(loginVM.UsernameorEmail);
+            if (userEnter==null)
+            {
+                userEnter = await _userManager.FindByNameAsync(loginVM.UsernameorEmail);
+                if(userEnter==null)
+                {
+                    ModelState.AddModelError("", "Username,Email or password is wrong!");
+                    return View();
+                }
+            }
+            var result =await _signInManager.PasswordSignInAsync(userEnter,loginVM.Password,loginVM.RememberMe,true);
+            if (result.IsLockedOut)
+            {
+                    ModelState.AddModelError("", "Your account was blocked");
+                    return View();
+            }
+            if(!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Username,Email or password is wrong!");
+                return View();
+
+            }
+            await _signInManager.SignInAsync(userEnter, loginVM.RememberMe);
+
+            return RedirectToAction("Index","Home");
         }
     }
 }

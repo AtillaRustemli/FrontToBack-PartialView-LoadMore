@@ -120,12 +120,12 @@
                             <li class="nav-item">
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <a class="nav-link" href="#">@ViewBag.userFullName</a>
+                                    <a class="nav-link" href="#">@User.Identity.Name</a>
                                     <a asp-controller="account" asp-action="logout"> Logout</a>
                                 }
                                 else
                                 {
-                                    <a asp-controller="account" asp-action="register">Login</a>
+                                    <a asp-controller="account" asp-action="login">Login</a>
                                 }
 
                             </li>
