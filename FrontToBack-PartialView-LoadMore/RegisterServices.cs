@@ -13,6 +13,10 @@ namespace FrontToBack_PartialView_LoadMore
         public static void Register(this IServiceCollection services,IConfiguration config)
         {
             services.AddControllersWithViews();
+                //.AddJsonOptions(configure =>
+                //{
+
+                //});
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection"));

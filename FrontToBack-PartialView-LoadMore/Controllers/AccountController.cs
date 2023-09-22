@@ -1,6 +1,8 @@
-﻿using FrontToBack_PartialView_LoadMore.Entities;
+﻿using FrontToBack_PartialView_LoadMore.DAL;
+using FrontToBack_PartialView_LoadMore.Entities;
 using FrontToBack_PartialView_LoadMore.ViewModels;
 using FrontToBack_PartialView_LoadMore.ViewModels.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,14 +10,17 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
+            _context = context;
         }
 
         //Register
@@ -28,13 +33,14 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Registers(RegisterVM registerVM)
         {
-            if (!ModelState.IsValid) return View();
+            var role =await _roleManager.FindByNameAsync("Member");
+            if(!ModelState.IsValid) return View();
             AppUser appUser = new();
             appUser.FullName = registerVM.Fullname;
             appUser.UserName = registerVM.Username;
             appUser.Email = registerVM.Email;
             IdentityResult result = await _userManager.CreateAsync(appUser, registerVM.Password);
-            if (!result.Succeeded)
+            if(!result.Succeeded)
             {
                 foreach (var error in result.Errors)
                 {
@@ -42,7 +48,8 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
                 }
                 return View(registerVM);
             }
-            
+            await _userManager.AddToRoleAsync(appUser, role.ToString());
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -61,7 +68,7 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Login(LoginVM loginVM)
+        public async Task<IActionResult> Login(LoginVM loginVM,string?ReturnUrl)
         {
             if(!ModelState.IsValid) return View();
 
@@ -88,8 +95,14 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
 
             }
             await _signInManager.SignInAsync(userEnter, loginVM.RememberMe);
+            if(ReturnUrl != null)
+            {
+                return Redirect(ReturnUrl);
+            }
 
             return RedirectToAction("Index","Home");
         }
+
+        
     }
 }

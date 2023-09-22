@@ -1,10 +1,12 @@
 ﻿using FrontToBack_PartialView_LoadMore.DAL;
 using FrontToBack_PartialView_LoadMore.Entities;
 using FrontToBack_PartialView_LoadMore.ViewModels.AdminCategory;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
-{  
+{
+    [Authorize(Roles ="Admin")]
     [Area("AdminArea")]
     public class CategoryController : Controller
     {

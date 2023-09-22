@@ -1,5 +1,6 @@
 ﻿using FrontToBack_PartialView_LoadMore.Entities;
 using FrontToBack_PartialView_LoadMore.Entities.DemoEntities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,34 @@ namespace FrontToBack_PartialView_LoadMore.DAL
         public DbSet<Genre> Genre { get; set; }
         public DbSet<BookGenre> BookGenre { get; set; }
         public DbSet<BookAuthor> BookAuthor { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<IdentityRole>()
+                .HasData(
+                new IdentityRole { 
+                    Id=Guid.NewGuid().ToString(),
+                    Name="Admin",
+                    NormalizedName="ADMIN",
+                    ConcurrencyStamp= Guid.NewGuid().ToString()
+
+                }, new IdentityRole { 
+                    Id=Guid.NewGuid().ToString(),
+                    Name="SuperAdmin",
+                    NormalizedName= "SUPERADMIN",
+                    ConcurrencyStamp= Guid.NewGuid().ToString()
+
+                }, new IdentityRole { 
+                    Id=Guid.NewGuid().ToString(),
+                    Name="Member",
+                    NormalizedName="MEMBER",
+                    ConcurrencyStamp= Guid.NewGuid().ToString()
+
+                }
+                );
+
+        }
 
     }
 }
