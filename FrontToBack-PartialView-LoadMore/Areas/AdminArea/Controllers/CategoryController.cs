@@ -18,7 +18,6 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
         }
 
         //Index
-
         public IActionResult Index()
         {
             return View(_appDbContext.Category.ToList());

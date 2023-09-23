@@ -99,7 +99,15 @@ namespace FrontToBack_PartialView_LoadMore.Controllers
             {
                 return Redirect(ReturnUrl);
             }
+            var role =await _userManager.GetRolesAsync(userEnter);
+            foreach(var item in role)
+            {
+            if (item=="Admin")
+            {
+                return RedirectToAction("Index", "dashboard", new {area="AdminArea"});
+            }
 
+            }
             return RedirectToAction("Index","Home");
         }
 

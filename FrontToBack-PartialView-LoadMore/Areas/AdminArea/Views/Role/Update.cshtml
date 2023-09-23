@@ -1,0 +1,33 @@
+﻿@using FrontToBack_PartialView_LoadMore.ViewModels.AdminRoles;
+@model UpdateRoleVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+<div class="container">
+    <div class="row">
+        @Model.User.FullName
+        <form class="forms-sample" method="post">
+            @foreach (var item in Model.Roles)
+            {
+                <input @(Model.UserRoles.Any(ur => ur.ToLower() == item.Name.ToLower()) ? "checked" : "") type="checkbox" />
+
+                @item.Name <br />
+            }
+               
+
+            <button type="submit" class="btn btn-primary me-2">Submit</button>
+            <button asp-controller="category" asp-action="index" class="btn btn-light">Go Back</button>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+            </script>
+}
+
+
+

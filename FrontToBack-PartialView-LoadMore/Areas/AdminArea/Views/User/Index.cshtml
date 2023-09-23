@@ -1,0 +1,58 @@
+﻿@model List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="cotainer">
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">User Table</h4>
+                    <p class="card-description">
+                        <a asp-controller="user" asp-action="create">Add user</a>
+                    </p>
+                    <form method="post">
+                        <input name="search" type="text"/>
+                        <button type="submit">Search</button>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>FullName</th>
+                                    <th>UserName</th>
+                                    <th>Email</th>
+                                    <th>Settings</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.FullName</td>
+                                        <td>@item.UserName</td>
+                                        <td>@item.Email</td>
+                                        <td>
+                                            @if (!(User.Identity.Name == item.UserName))
+                                            {
+                                                <a asp-controller="user" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></a>
+                                            }
+                                            
+                                            <a asp-controller="user" asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <a asp-controller="user" asp-action="detail" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fa-solid fa-info"></i></a>
+                                            <a asp-controller="role" asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-info"><i class="fa-regular fa-pen-to-square"></i></a>
+                                            
+                                        </td>
+                                    </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
