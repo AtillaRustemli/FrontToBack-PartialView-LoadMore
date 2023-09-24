@@ -11,6 +11,7 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
     public class ProductController : Controller
+
     {
         private readonly AppDbContext _appDbContext;
         private readonly IWebHostEnvironment _webHostEnvironment;
@@ -34,15 +35,14 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
                 .ToList();
 
             page += prevNext;
-            var pagination = new PaginationVM<Product>(product,GetPageCount(query.Count(),take) , page);
-            
+            var pagination = new PaginationVM<Product>(product, PaginationServices.GetPageCount(query.Count(),take) , page);
             return View(pagination);
         }
-        public int GetPageCount(int count, int take)
-        {
-            var pageCount = (int)Math.Ceiling((decimal)(count) / take);
-            return pageCount;
-        }
+        //public int GetPageCount(int count, int take)
+        //{
+        //    var pageCount = (int)Math.Ceiling((decimal)(count) / take);
+        //    return pageCount;
+        //}
         //Create
         public IActionResult Create()
         {

@@ -1,10 +1,9 @@
 ﻿namespace FrontToBack_PartialView_LoadMore.Helpers
 {
-    public class PaginationServices
+    public static class PaginationServices
     {
-        public int GetPageCount(int count, int take)
+        public static int GetPageCount(int count, int take)
         {
-            
             return  (int)Math.Ceiling((decimal)(count) / take);
         }
     }
