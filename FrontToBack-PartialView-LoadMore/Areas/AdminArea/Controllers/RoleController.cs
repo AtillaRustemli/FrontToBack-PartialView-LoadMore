@@ -49,5 +49,15 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
             updateRoleVM.User = user;
             return View(updateRoleVM);
         }
+        [HttpPost]
+        public async Task<IActionResult> Update(string id,List<string> roles)
+        {
+            var user=await _userManager.FindByIdAsync(id); 
+            if(user == null) return View();
+            var oldRoles = await _userManager.GetRolesAsync(user);
+            await _userManager.RemoveFromRolesAsync(user, oldRoles);
+            await _userManager.AddToRolesAsync(user, roles);
+            return RedirectToAction("Index","User");
+        }
     }
 }

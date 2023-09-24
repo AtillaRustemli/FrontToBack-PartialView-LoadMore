@@ -1,6 +1,7 @@
 ﻿using FrontToBack_PartialView_LoadMore.DAL;
 using FrontToBack_PartialView_LoadMore.Entities;
 using FrontToBack_PartialView_LoadMore.Extensions;
+using FrontToBack_PartialView_LoadMore.Helpers;
 using FrontToBack_PartialView_LoadMore.ViewModels.AdminProduct;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,15 +22,26 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
         }
 
         //Index
-        public IActionResult Index()
+        public IActionResult Index(int PrevNext=0,int page=1,int take=4)
         {
-            var product = _appDbContext.Product
+            var query=_appDbContext.Product.AsQueryable();
+            var product =query
                 .Include(p => p.Category)
                 .Include(p => p.ProductImage)
+                .AsNoTracking()
+                .Skip((page-1)*take)
+                .Take(take)
                 .ToList();
-            return View(product);
-        }
+            
 
+            var pagination = new PaginationVM<Product>(product,GetPageCount(query.Count(),take) , page);
+            return View(pagination);
+        }
+        public int GetPageCount(int count, int take)
+        {
+            var pageCount = (int)Math.Ceiling((decimal)(count) / take);
+            return pageCount;
+        }
         //Create
         public IActionResult Create()
         {

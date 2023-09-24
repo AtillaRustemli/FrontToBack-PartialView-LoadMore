@@ -11,8 +11,7 @@
         <form class="forms-sample" method="post">
             @foreach (var item in Model.Roles)
             {
-                <input @(Model.UserRoles.Any(ur => ur.ToLower() == item.Name.ToLower()) ? "checked" : "") type="checkbox" />
-
+                <input @(Model.UserRoles.Any(ur => ur.ToLower() == item.Name.ToLower()) ? "checked" : "") type="checkbox" value="@item.Name" name="roles"/>
                 @item.Name <br />
             }
                
