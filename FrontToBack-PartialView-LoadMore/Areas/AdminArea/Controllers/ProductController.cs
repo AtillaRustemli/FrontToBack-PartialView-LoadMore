@@ -22,7 +22,7 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
         }
 
         //Index
-        public IActionResult Index(int PrevNext=0,int page=1,int take=4)
+        public IActionResult Index(int prevNext=0,int page=1,int take=4)
         {
             var query=_appDbContext.Product.AsQueryable();
             var product =query
@@ -32,9 +32,10 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
                 .Skip((page-1)*take)
                 .Take(take)
                 .ToList();
-            
 
+            page += prevNext;
             var pagination = new PaginationVM<Product>(product,GetPageCount(query.Count(),take) , page);
+            
             return View(pagination);
         }
         public int GetPageCount(int count, int take)

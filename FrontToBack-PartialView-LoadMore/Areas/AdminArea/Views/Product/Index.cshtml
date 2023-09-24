@@ -52,15 +52,15 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item">
-                        <a class="page-link"aria-label="Previous">Previous</a>
+                        <a asp-action="index" asp-route-prevNext="@(-1)"  class="page-link"aria-label="Previous">Previous</a>
                 </li>
                 @for (int i = 1; i <= Model.PageCount; i++)
                 {
-                     <li class="page-item @(i==Model.InWhichPage?"active":" ")"><a asp-action="index" asp-route-page="@i" class="page-link">@i</a></li>
+                    <li class="page-item @(i==Model.InWhichPage?"active":" ")"><a asp-action="index" asp-route-page="@i" class="page-link">@i</a></li>
                 }
                
                 <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">Next</a>
+                    <a asp-action="index" asp-route-prevNext="@(1)" class="page-link" aria-label="Next">Next</a>
                 </li>
             </ul>
         </nav>
