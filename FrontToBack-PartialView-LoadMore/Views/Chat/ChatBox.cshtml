@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <div class="row p-1">
+        <div class="col-1">User</div>
+        <div class="col-5"><input type="text" id="userInput" /></div>
+    </div>
+    <div class="row p-1">
+        <div class="col-1">Message</div>
+        <div class="col-5"><input type="text" class="w-100" id="messageInput" /></div>
+    </div>
+    <div class="row p-1">
+        <div class="col-6 text-end">
+            <input type="button" id="sendButton" value="Send Message" />
+        </div>
+    </div>
+    <div class="row p-1">
+        <div class="col-6">
+            <hr />
+        </div>
+    </div>
+    <div class="row p-1">
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.11/signalr.min.js" integrity="sha512-BmbgtaebZ4BB5jiHMIauI5fFKc7dXo0Hqm7nmkHnoq63qBaYQWg1bhcNoaIBkfpw5bymrPEM8ap2fCB6ObSK4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    var connection = new signalR.HubConnectionBuilder().withUrl("/AtillasWhatsupp").build();
+    connection.start();
+
+    document.getElementById("sendButton").addEventListener("click", function (event) {
+        var user = document.getElementById("userInput").value;
+        var message = document.getElementById("messageInput").value;
+        connection.invoke("sendMessage", user, message);
+      })
+    connection.on("ReceiveMessage", function (user, message) {
+        console.log(user);
+        console.log(message);
+    })
+</script>

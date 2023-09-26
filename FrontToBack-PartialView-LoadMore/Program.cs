@@ -1,4 +1,5 @@
 using FrontToBack_PartialView_LoadMore;
+using FrontToBack_PartialView_LoadMore.Entities;
 using FrontToBack_PartialView_LoadMore.Services;
 using Microsoft.AspNetCore.Builder;
 
@@ -23,6 +24,7 @@ app.MapControllerRoute(
     "{controller=home}/{action=index}/{id?}"
 
     );
+app.MapHub<ChatHub>("/AtillasWhatsupp");
 
 
 //app.MapGet("/", () => "Hello World!");
