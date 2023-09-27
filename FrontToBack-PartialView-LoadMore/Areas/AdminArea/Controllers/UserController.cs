@@ -57,10 +57,11 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
             updatedUser.FullName = updateUserVM.Fullname;
             updatedUser.UserName = updateUserVM.Username;
             updatedUser.Email = updateUserVM.Email;
+           
             _appDbContext.SaveChanges();
 
 
-          //var result = await _signInManager.PasswordSignInAsync(user, updateUserVM.Password, updateUserVM.RememberMe, true);
+            //var result = await _signInManager.PasswordSignInAsync(user, updateUserVM.Password, updateUserVM.RememberMe, true);
             return RedirectToAction("index");
         }
         #endregion
