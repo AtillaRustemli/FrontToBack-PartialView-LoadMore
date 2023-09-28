@@ -12,21 +12,23 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
     {
         private readonly AppDbContext _appDbContext;
         private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, AppDbContext appDbContext)
+        public UserController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, AppDbContext appDbContext, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
             _appDbContext = appDbContext;
+            _roleManager = roleManager;
         }
 
-
+        #region Index
         public IActionResult Index(string search)
         {
             var users=search==null?_userManager.Users.ToList():_userManager.Users.Where(u=>u.FullName.ToLower().Contains(search)).ToList();
             return View(users);
         }
+        #endregion
+       
         #region Delete
         public async Task<IActionResult> Delete(string id)
         {
@@ -63,6 +65,54 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
 
             //var result = await _signInManager.PasswordSignInAsync(user, updateUserVM.Password, updateUserVM.RememberMe, true);
             return RedirectToAction("index");
+        }
+        #endregion
+        #region Create
+
+        public async Task<IActionResult> Create()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Create(CreateUserVM createUserVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            var usersUsaerName=await _userManager.FindByNameAsync(createUserVM.Username);
+            var usersEmail=await _userManager.FindByEmailAsync(createUserVM.Email);
+            var usersFullName=await _userManager.FindByNameAsync(createUserVM.Username);
+            var role = await _roleManager.FindByNameAsync("Member");
+            if(usersFullName!=null|| usersEmail!=null|| usersUsaerName != null)
+            {
+                return View();
+            }
+            AppUser appUser = new();
+            appUser.FullName = createUserVM.Fullname;
+            appUser.UserName = createUserVM.Username;
+            appUser.Email = createUserVM.Email;
+            IdentityResult result = await _userManager.CreateAsync(appUser, createUserVM.Password);
+            if(!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty,error.Description.ToString());
+
+                }
+            }
+
+            await _userManager.AddToRoleAsync(appUser, role.ToString());
+            return RedirectToAction("index");
+        }
+        #endregion
+        #region Detail
+        public async Task<IActionResult> Detail(string id)
+        {
+            var user =await _userManager.FindByIdAsync(id);
+            return View(user);
         }
         #endregion
 

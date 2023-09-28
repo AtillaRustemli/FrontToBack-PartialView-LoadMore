@@ -32,7 +32,7 @@
         <ul>
             @foreach (var item in ViewBag.Users)
             {
-                <li class="list-group-item">@item.FullName</li>
+                <li class="list-group-item"> <span> <span class="bg-offline" style="display:inline-block;width:20px;height:20px;border-radius:50%;"></span> @item.FullName</span> </li>
             }
 
         </ul>
@@ -41,7 +41,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.11/signalr.min.js" integrity="sha512-BmbgtaebZ4BB5jiHMIauI5fFKc7dXo0Hqm7nmkHnoq63qBaYQWg1bhcNoaIBkfpw5bymrPEM8ap2fCB6ObSK4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     var connection = new signalR.HubConnectionBuilder().withUrl("/AtillasWhatsupp").build();
-    connection.start();
 
     document.getElementById("sendButton").addEventListener("click", function (event) {
         var user = document.getElementById("userInput").value;
@@ -55,4 +54,5 @@
         console.log(user);
         console.log(message);
     })
+    connection.start();
 </script>

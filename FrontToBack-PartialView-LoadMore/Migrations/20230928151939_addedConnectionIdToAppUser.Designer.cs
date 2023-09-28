@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FrontToBack_PartialView_LoadMore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230924093735_addedConnectionIdToAppUSer")]
-    partial class addedConnectionIdToAppUSer
+    [Migration("20230928151939_addedConnectionIdToAppUser")]
+    partial class addedConnectionIdToAppUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -92,7 +92,6 @@ namespace FrontToBack_PartialView_LoadMore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConnectionId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -434,22 +433,22 @@ namespace FrontToBack_PartialView_LoadMore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ec60c1f2-abc5-425d-b7f7-20f3296caead",
-                            ConcurrencyStamp = "0a45966c-4dff-4d00-af8d-bcbb61e6d31a",
+                            Id = "f727866a-f192-4a03-a855-d55ab6e888f7",
+                            ConcurrencyStamp = "6a6199da-6ba5-41d9-a742-7f253cb0fa53",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "cd0f2f65-ad74-4a23-8aac-dbe27fb7d542",
-                            ConcurrencyStamp = "61cc6173-c9b8-4d71-9e74-b5c42f03cfa9",
+                            Id = "72a4ce78-7c83-49b0-acc5-0c93b72e4826",
+                            ConcurrencyStamp = "1306881b-0f5d-4d22-b50c-755be8127957",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
-                            Id = "d03d5da0-72e6-4702-a607-91ef021a217d",
-                            ConcurrencyStamp = "1c83ca91-8bd1-4625-9fe5-3636402c4fb5",
+                            Id = "ae5efc3c-f44e-4046-a1b1-d1ffa7ded965",
+                            ConcurrencyStamp = "d19b034b-17e7-4e14-8d7a-c4098a7b03e1",
                             Name = "Member",
                             NormalizedName = "MEMBER"
                         });

@@ -4,7 +4,7 @@
 
 namespace FrontToBack_PartialView_LoadMore.Migrations
 {
-    public partial class addedConnectionIdToAppUSer : Migration
+    public partial class addedConnectionIdToAppUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,23 +27,22 @@ namespace FrontToBack_PartialView_LoadMore.Migrations
                 name: "ConnectionId",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "");
+                nullable: true);
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "cd0f2f65-ad74-4a23-8aac-dbe27fb7d542", "61cc6173-c9b8-4d71-9e74-b5c42f03cfa9", "SuperAdmin", "SUPERADMIN" });
+                values: new object[] { "72a4ce78-7c83-49b0-acc5-0c93b72e4826", "1306881b-0f5d-4d22-b50c-755be8127957", "SuperAdmin", "SUPERADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "d03d5da0-72e6-4702-a607-91ef021a217d", "1c83ca91-8bd1-4625-9fe5-3636402c4fb5", "Member", "MEMBER" });
+                values: new object[] { "ae5efc3c-f44e-4046-a1b1-d1ffa7ded965", "d19b034b-17e7-4e14-8d7a-c4098a7b03e1", "Member", "MEMBER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ec60c1f2-abc5-425d-b7f7-20f3296caead", "0a45966c-4dff-4d00-af8d-bcbb61e6d31a", "Admin", "ADMIN" });
+                values: new object[] { "f727866a-f192-4a03-a855-d55ab6e888f7", "6a6199da-6ba5-41d9-a742-7f253cb0fa53", "Admin", "ADMIN" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -51,17 +50,17 @@ namespace FrontToBack_PartialView_LoadMore.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "cd0f2f65-ad74-4a23-8aac-dbe27fb7d542");
+                keyValue: "72a4ce78-7c83-49b0-acc5-0c93b72e4826");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "d03d5da0-72e6-4702-a607-91ef021a217d");
+                keyValue: "ae5efc3c-f44e-4046-a1b1-d1ffa7ded965");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "ec60c1f2-abc5-425d-b7f7-20f3296caead");
+                keyValue: "f727866a-f192-4a03-a855-d55ab6e888f7");
 
             migrationBuilder.DropColumn(
                 name: "ConnectionId",
