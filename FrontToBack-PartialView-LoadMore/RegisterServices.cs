@@ -12,7 +12,7 @@ namespace FrontToBack_PartialView_LoadMore
         
         public static void Register(this IServiceCollection services,IConfiguration config)
         {
-            services.AddSignalR();
+
             services.AddControllersWithViews();
                 //.AddJsonOptions(configure =>
                 //{
@@ -45,6 +45,7 @@ namespace FrontToBack_PartialView_LoadMore
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddErrorDescriber<CustomIdentityErrorDescriber>();
 
+            services.AddSignalR();
         }
     }
 }

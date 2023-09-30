@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ChatBox";
 }
 <div class="container">
     <div class="col-6">
@@ -45,8 +45,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.11/signalr.min.js" integrity="sha512-BmbgtaebZ4BB5jiHMIauI5fFKc7dXo0Hqm7nmkHnoq63qBaYQWg1bhcNoaIBkfpw5bymrPEM8ap2fCB6ObSK4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    var connection = new signalR.HubConnectionBuilder().withUrl("/AtillasWhatsupp").build();
+    var connection = new signalR.HubConnectionBuilder().withUrl("/ChatHub").build();
     connection.start();
+
+    console.log(connection)
+
 
     document.getElementById("sendButton").disabled = false;
 
@@ -63,6 +66,7 @@
         connection.invoke("SendMessage", user, message);
         event.preventDefault();
     });
+
     connection.on("OnConnect",function(userId){
         document.getElementById("userId").classList.add("bg-online");
         document.getElementById("userId").classList.remove("bg-offline");
@@ -72,7 +76,7 @@
         document.getElementById("userId").classList.remove("bg-online");
     });
     connection.on("RecieveFromUser", function (userId) {
-        alert("Salam")
+        alert("Salam");
     });
     
 </script>

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace FrontToBack_PartialView_LoadMore.Hubs
 {
-     
     public class ChatHub : Hub
     {
         private readonly UserManager<AppUser> _userManager;
@@ -15,6 +14,7 @@ namespace FrontToBack_PartialView_LoadMore.Hubs
         {
             _userManager = userManager;
             _appDbContext = appDbContext;
+            var context = Context.User;
         }
 
         public async Task SendMessage(string user, string message)
@@ -22,7 +22,8 @@ namespace FrontToBack_PartialView_LoadMore.Hubs
            
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
-        public override Task OnConnectedAsync()
+        
+        public override async Task OnConnectedAsync()
         {
             if (Context.User.Identity.IsAuthenticated)
             {
@@ -31,18 +32,18 @@ namespace FrontToBack_PartialView_LoadMore.Hubs
                 var result = _userManager.UpdateAsync(user).Result;
                 Clients.All.SendAsync("OnConnect", user.Id);
             }
-            return base.OnConnectedAsync();
+            await base.OnConnectedAsync();
         }
-        public override Task OnDisconnectedAsync(Exception? exception)
+        public override async Task OnDisconnectedAsync(Exception? exception)
         {
             if (Context.User.Identity.IsAuthenticated)
             {
                 var user = _userManager.FindByNameAsync(Context.User.Identity.Name).Result;
                 user.ConnectionId = null;
                 var result = _userManager.UpdateAsync(user).Result;
-                Clients.All.SendAsync("DisConnect", user.Id);
+                Clients.All.SendAsync("Connect", user.Id);
             }
-            return base.OnDisconnectedAsync(exception);
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }

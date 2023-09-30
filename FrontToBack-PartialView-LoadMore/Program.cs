@@ -13,6 +13,7 @@ app.UseStaticFiles();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapHub<ChatHub>("/ChatHub");
 app.MapControllerRoute(
 
       name: "areas",
@@ -24,7 +25,7 @@ app.MapControllerRoute(
     "{controller=home}/{action=index}/{id?}"
 
     );
-app.MapHub<ChatHub>("/AtillasWhatsupp");
+
 
 
 //app.MapGet("/", () => "Hello World!");
