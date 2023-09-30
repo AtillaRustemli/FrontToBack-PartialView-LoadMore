@@ -32,27 +32,47 @@
         <ul>
             @foreach (var item in ViewBag.Users)
             {
-                <li class="list-group-item"> <span> <span class="bg-offline" style="display:inline-block;width:20px;height:20px;border-radius:50%;"></span> @item.FullName</span> </li>
+                <li class="list-group-item">
+                    <span id="@item.Id" style="display:inline-block;width:20px;height:20px;border-radius:50%;"></span><span> @item.FullName</span>
+                    <a asp-controller="chat" asp-action="SendToClient" asp-route-userId="@item.Id">SendMessage</a>
+                </li>
             }
 
         </ul>
     </div>
 </div>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.11/signalr.min.js" integrity="sha512-BmbgtaebZ4BB5jiHMIauI5fFKc7dXo0Hqm7nmkHnoq63qBaYQWg1bhcNoaIBkfpw5bymrPEM8ap2fCB6ObSK4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     var connection = new signalR.HubConnectionBuilder().withUrl("/AtillasWhatsupp").build();
+    connection.start();
+
+    document.getElementById("sendButton").disabled = false;
+
+    connection.on("ReceiveMessage", function (user, message) {
+        var li = document.createElement("li");
+        document.getElementById("messagesList").appendChild(li);
+        li.textContent = `${user} says ${message}`;
+    });
+
 
     document.getElementById("sendButton").addEventListener("click", function (event) {
         var user = document.getElementById("userInput").value;
         var message = document.getElementById("messageInput").value;
-        connection.invoke("sendMessage", user, message);
-      })
-    connection.on("ReceiveMessage", function (user, message) {
-        var li = document.createElement("li");
-        document.getElementById("messagesList").appendChild(li);
-        li.textContent=`From ${user}:${message}`
-        console.log(user);
-        console.log(message);
-    })
-    connection.start();
+        connection.invoke("SendMessage", user, message);
+        event.preventDefault();
+    });
+    connection.on("OnConnect",function(userId){
+        document.getElementById("userId").classList.add("bg-online");
+        document.getElementById("userId").classList.remove("bg-offline");
+    });
+    connection.on("DisConnect", function (userId) {
+        document.getElementById("userId").classList.add("bg-offline");
+        document.getElementById("userId").classList.remove("bg-online");
+    });
+    connection.on("RecieveFromUser", function (userId) {
+        alert("Salam")
+    });
+    
 </script>

@@ -59,7 +59,10 @@ namespace FrontToBack_PartialView_LoadMore.Areas.AdminArea.Controllers
             updatedUser.FullName = updateUserVM.Fullname;
             updatedUser.UserName = updateUserVM.Username;
             updatedUser.Email = updateUserVM.Email;
-           
+            updatedUser.NormalizedUserName= updateUserVM.Username.ToUpper();
+            updatedUser.NormalizedEmail= updateUserVM.Email.ToUpper();
+
+
             _appDbContext.SaveChanges();
 
 
